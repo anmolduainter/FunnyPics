@@ -32,6 +32,7 @@ import com.google.android.gms.vision.face.Face;
 class FaceGraphic extends GraphicOverlay.Graphic {
     private Bitmap bitmap;
     private Bitmap op;
+    int bit;
     private static final float FACE_POSITION_RADIUS = 10.0f;
     private static final float ID_TEXT_SIZE = 40.0f;
     private static final float ID_Y_OFFSET = 50.0f;
@@ -57,9 +58,10 @@ class FaceGraphic extends GraphicOverlay.Graphic {
     private int mFaceId;
     private float mFaceHappiness;
 
-    FaceGraphic(GraphicOverlay overlay) {
+    FaceGraphic(GraphicOverlay overlay,int bit) {
         super(overlay);
 
+        this.bit=bit;
         mCurrentColorIndex = (mCurrentColorIndex + 1) % COLOR_CHOICES.length;
         final int selectedColor = COLOR_CHOICES[mCurrentColorIndex];
 
@@ -75,7 +77,7 @@ class FaceGraphic extends GraphicOverlay.Graphic {
         mBoxPaint.setStyle(Paint.Style.STROKE);
         mBoxPaint.setStrokeWidth(BOX_STROKE_WIDTH);
 
-        bitmap = BitmapFactory.decodeResource(getOverlay().getContext().getResources(), R.drawable.sunglas);
+        bitmap = BitmapFactory.decodeResource(getOverlay().getContext().getResources(),bit);
         op = bitmap;
 
     }
